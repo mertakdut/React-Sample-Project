@@ -1,4 +1,4 @@
-<img align="left" width="48" height="48" src="https://github.com/mertakdut/SpringBoot-ReactJs-Simple-Project/blob/master/react_logo.png">
+<img align="left" width="48" height="48" src="./react_logo.png">
 
 # React Application Example
 
