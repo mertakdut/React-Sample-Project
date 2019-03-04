@@ -32,17 +32,6 @@ module.exports = {
                 'style-loader',
                 'css-loader'
             ]
-        }, {
-            test: /\.html$/,
-            use: [{
-                loader: "html-loader"
-            }]
         }]
-    },
-    plugins: [
-        new HtmlWebPackPlugin({
-            template: "./src/index.html",
-            filename: "./dist/index.html"
-        })
-    ]
+    }
 };
