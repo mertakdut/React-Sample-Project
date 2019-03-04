@@ -62,7 +62,7 @@ class BuySellModal extends React.Component {
 
     render() {
         return (
-            <Modal show={true} onHide={() => { this.props.callback(false); }}>
+            <Modal centered={true} show={true} onHide={() => { this.props.callback(false); }}>
                 <Modal.Header closeButton>
                     <Modal.Title>{this.props.isBuying ? 'Buying' : 'Selling'} {this.props.currency}</Modal.Title>
                 </Modal.Header>
