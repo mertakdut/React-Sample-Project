@@ -1,9 +1,12 @@
 import React from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
 import { showDialog, logout } from '../../actions'
 import { LSKEY_USERNAME, LSKEY_TOKEN, LSKEY_TOKEN_EXPIRATIONTIME } from '../../config/constants'
+import {
+    withRouter
+} from 'react-router-dom'
 
 const mapStateToProps = state => ({
     loggedInUsername: state.login != null ? state.login.username : null
@@ -25,11 +28,6 @@ class NavBarTop extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            hasJustLoggedOut: false
-        }
-
         this.onLoggedOut = this.onLoggedOut.bind(this);
     }
 
@@ -38,15 +36,10 @@ class NavBarTop extends React.Component {
         localStorage.removeItem(LSKEY_TOKEN);
         localStorage.removeItem(LSKEY_TOKEN_EXPIRATIONTIME);
         this.props.logout();
-        this.setState({ hasJustLoggedOut: true });
+        this.props.history.push('/');
     }
 
     render() {
-
-        if (this.state.hasJustLoggedOut) {
-            this.setState({ hasJustLoggedOut: false })
-            return <Redirect to="/" />
-        }
 
         const loginLogout = this.props.loggedInUsername == null ?
             <NavItem style={navbarStyling} componentclass="span"><Link to="/login">Login</Link></NavItem> :
@@ -74,4 +67,4 @@ class NavBarTop extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBarTop);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarTop));
